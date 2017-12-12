@@ -79,11 +79,14 @@
             <item value="dun" />
             <item value="supl" />
         </string-array>
-        <string-array name="carrier_metered_roaming_apn_types_strings" num="3">
+        <string-array name="carrier_metered_roaming_apn_types_strings" num="4">
             <item value="default" />
             <item value="dun" />
+            <item value="mms" />
             <item value="supl" />
         </string-array>
         <boolean name="disable_voice_barring_notification_bool" value="true" />
+        <boolean name="carrier_name_override_bool" value="true" />
+        <string name="carrier_name_string">Verizon</string>
     </carrier_config>
 </carrier_config_list>
