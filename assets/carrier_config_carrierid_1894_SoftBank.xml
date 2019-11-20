@@ -3,7 +3,6 @@
     <boolean name="carrier_supports_ss_over_ut_bool" value="true"/>
     <boolean name="show_4g_for_lte_data_icon_bool" value="true"/>
     <boolean name="enabledMMS" value="true"/>
-    <boolean name="carrier_force_disable_etws_cmas_test_bool" value="true"/>
     <boolean name="carrier_volte_available_bool" value="true"/>
     <boolean name="always_show_emergency_alert_onoff_bool" value="true"/>
     <boolean name="ignore_data_enabled_changed_for_video_calls" value="true"/>
@@ -16,6 +15,5 @@
     <int name="maxImageWidth" value="2592"/>
     <int name="volte_replacement_rat_int" value="3"/>
     <int name="ims_dtmf_tone_delay_int" value="215"/>
-    <long name="message_expiration_time_long" value="600000"/>
     <string name="default_vm_number_string">1416</string>
 </carrier_config>
