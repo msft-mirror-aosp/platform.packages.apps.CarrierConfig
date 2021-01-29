@@ -37,7 +37,7 @@
     <boolean name="prefer_2g_bool" value="false"/>
     <boolean name="rtt_supported_bool" value="true"/>
     <boolean name="show_apn_setting_cdma_bool" value="true"/>
-    <boolean name="use_rcs_presence_bool" value="true"/>
+    <boolean name="ims.enable_presence_publish_bool" value="true"/>
     <boolean name="sms_requires_destination_number_conversion_bool" value="true"/>
     <boolean name="support_3gpp_call_forwarding_while_roaming_bool" value="false"/>
     <boolean name="support_downgrade_vt_to_audio_bool" value="false"/>
@@ -144,6 +144,10 @@
         <item value="carrier_enabled"/>
         <item value="mvno_type"/>
         <item value="mvno_match_data"/>
+    </string-array>
+    <string-array name="carrier_certificate_string_array" num="2">
+        <item value="FF82050BF6BED1F152AC1A12DC83CACBAD401775161882872C6665FC5E15C8F2"/>
+        <item value="AE23A03436DF07B0CD70FE881CDA2EC1D21215D7B7B0CC68E67B67F5DF89526A"/>
     </string-array>
     <int-array name="lte_rsrp_thresholds_int_array" num="4">
         <item value="-115"/>
