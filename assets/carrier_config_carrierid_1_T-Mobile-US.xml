@@ -15,6 +15,7 @@
     <boolean name="rtt_supported_bool" value="true"/>
     <boolean name="hide_tty_hco_vco_with_rtt" value="true"/>
     <boolean name="wfc_carrier_name_override_by_pnn_bool" value="true"/>
+    <boolean name="ims.enable_presence_capability_exchange_bool" value="true"/>
     <int name="maxImageHeight" value="1944"/>
     <int name="maxImageWidth" value="2592"/>
     <int name="maxMessageSize" value="1048576"/>
@@ -24,6 +25,7 @@
     <int name="gba_ua_security_organization_int" value="1"/> <!-- ORG_3GPP -->
     <int name="gba_ua_security_protocol_int" value="65536"/> <!-- UA_SECURITY_PROTOCOL_3GPP_TLS_DEFAULT -->
     <int name="gba_ua_tls_cipher_suite_int" value="47"/> <!-- TLS_RSA_WITH_AES_128_CBC_SHA -->
+    <int name="default_mtu_int" value="1440"/>
     <string name="carrier_name_string">T-Mobile</string>
     <string name="carrier_vvm_package_name_string">com.tmobile.vvm.application</string>
     <string name="vvm_destination_number_string">122</string>
