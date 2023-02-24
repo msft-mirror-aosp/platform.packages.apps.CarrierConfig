@@ -187,6 +187,4 @@
     <string-array name="boosted_nrarfcns_string_array" num="1">
         <item value="200000-866666"/>
     </string-array>
-
-    <int name="carrier_data_call_retry_network_requested_max_count_int" value="20"/>
 </carrier_config>
