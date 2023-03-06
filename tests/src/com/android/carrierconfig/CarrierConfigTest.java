@@ -275,6 +275,9 @@ public class CarrierConfigTest extends InstrumentationTestCase {
         names.addAll(getCarrierConfigXmlNames(CarrierConfigManager.class));
         for (Class nested : CarrierConfigManager.class.getDeclaredClasses()) {
             Log.i("CarrierConfigTest", nested.toString());
+            if (nested.isInterface()) {
+                continue;
+            }
             if (Modifier.isStatic(nested.getModifiers())) {
                 names.addAll(getCarrierConfigXmlNames(nested));
             }
