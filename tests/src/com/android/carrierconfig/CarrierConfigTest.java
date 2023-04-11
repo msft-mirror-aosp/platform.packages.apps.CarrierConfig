@@ -86,6 +86,7 @@ public class CarrierConfigTest extends InstrumentationTestCase {
                                 case "device":
                                 case "vendorSku":
                                 case "hardwareSku":
+                                case "board":
                                 case "cid":
                                 case "name":
                                 case "sku":
