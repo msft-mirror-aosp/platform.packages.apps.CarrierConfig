@@ -47,4 +47,5 @@
         <item value="41"/>
     </int-array>
     <boolean name="enable_nr_advanced_for_roaming_bool" value="false"/>
+    <boolean name="force_home_network_bool" value="true"/>
 </carrier_config>
