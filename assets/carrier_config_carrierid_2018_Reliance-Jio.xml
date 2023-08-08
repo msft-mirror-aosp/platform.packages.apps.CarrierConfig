@@ -16,4 +16,7 @@
         <item value="ia"/>
         <item value="default"/>
     </string-array>
+    <string-array name="carrier_certificate_string_array" num="1">
+        <item value="e7d0c66ff87eae18e4cd16b592ad074e5239809af849f2c9a1ac15f9a026784a:com.jio.mobilock"/>
+    </string-array>
 </carrier_config>
