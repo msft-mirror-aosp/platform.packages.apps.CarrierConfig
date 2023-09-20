@@ -48,4 +48,5 @@
         <item value="41"/>
     </int-array>
     <boolean name="enable_nr_advanced_for_roaming_bool" value="false"/>
+    <boolean name="show_roaming_indicator_bool" value="false"/>
 </carrier_config>
