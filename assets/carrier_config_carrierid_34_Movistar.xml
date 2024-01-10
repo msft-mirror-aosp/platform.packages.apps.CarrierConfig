@@ -48,4 +48,5 @@
     <item value="900101010"/>
     <item value="017"/>
   </string-array>
+  <boolean name="carrier_allow_transfer_ims_call_bool" value="true"/>
 </carrier_config>
