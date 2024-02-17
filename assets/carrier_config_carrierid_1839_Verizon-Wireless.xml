@@ -52,6 +52,8 @@
     <boolean name="voicemail_notification_persistent_bool" value="true"/>
     <boolean name="wifi_calls_can_be_hd_audio" value="false"/>
     <boolean name="world_mode_enabled_bool" value="true"/>
+    <boolean name="nr_timers_reset_on_plmn_change_bool" value="true"/>
+    <boolean name="nr_timers_reset_on_voice_qos_bool" value="true"/>
     <int name="aliasMaxChars" value="48"/>
     <int name="aliasMinChars" value="2"/>
     <int name="carrier_default_wfc_ims_mode_int" value="1"/>
@@ -171,6 +173,7 @@
     <int-array name="additional_nr_advanced_bands_int_array" num="1">
         <item value="77"/>
     </int-array>
+    <int name="nr_advanced_bands_secondary_timer_seconds_int" value="300"/>
     <string-array name="unmetered_network_types_string_array" num="2">
         <item value="NR_NSA_MMWAVE"/>
         <item value="NR_SA_MMWAVE"/>
