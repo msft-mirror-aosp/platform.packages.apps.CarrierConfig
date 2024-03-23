@@ -71,4 +71,5 @@
         <item value="311170"/>
         <item value="311250"/>
     </string-array>
+    string name="satellite_information_redirect_url_string">https://www.t-mobile.com/satellitecoverage</string>
 </carrier_config>
