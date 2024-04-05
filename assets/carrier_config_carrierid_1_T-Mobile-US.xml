@@ -78,4 +78,8 @@
     <boolean name="override_wfc_roaming_mode_while_using_ntn_bool" value="true"/>
     <int name="satellite_entitlement_status_refresh_days_int" value="7"/>
     <boolean name="satellite_entitlement_supported_bool" value="true"/>
+    <int-array name="carrier_roaming_satellite_default_services_int_array" num="2">
+        <item value="3"/>
+        <item value="6"/>
+    </int-array>
 </carrier_config>
