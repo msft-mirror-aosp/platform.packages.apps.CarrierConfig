@@ -71,5 +71,11 @@
         <item value="311170"/>
         <item value="311250"/>
     </string-array>
-    string name="satellite_information_redirect_url_string">https://www.t-mobile.com/satellitecoverage</string>
+    <string name="satellite_information_redirect_url_string">https://www.t-mobile.com/satellitecoverage</string>
+    <boolean name="satellite_attach_supported_bool" value="true"/>
+    <int name="satellite_connection_hysteresis_sec_int" value="300"/>
+    <boolean name="remove_satellite_plmn_in_manual_network_scan_bool" value="true"/>
+    <boolean name="override_wfc_roaming_mode_while_using_ntn_bool" value="true"/>
+    <int name="satellite_entitlement_status_refresh_days_int" value="7"/>
+    <boolean name="satellite_entitlement_supported_bool" value="true"/>
 </carrier_config>
