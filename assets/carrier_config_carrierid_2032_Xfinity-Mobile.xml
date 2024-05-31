@@ -156,10 +156,12 @@
         <item value="81"/>
         <item value="82"/>
         <item value="83"/>
-    </int-array>    
-    <string-array name="carrier_certificate_string_array" num="3">
-        <item value="953F5A4C22E7FD16ADC3F12EB038682AAD377FEF9A18B9D12C1ABEA78911C749:com.xfinity.digitalhome"/>
-        <item value="06AADA946110E64414AEBE3AF34AE06BAF239EF75C947149FB67263D8A2547C3:com.xfinity.digitalhome.debug"/>
+    </int-array>
+    <string-array name="carrier_certificate_string_array" num="5">
+        <item value="31b4c17315c2269040d535f7b6a79cf4d11517c664d9de8f1ddf4f8a785aad47:com.xfinity.digitalhome"/>
+        <item value="c9133e8168f97573c8c567f46777dff74ade0c015ecf2c5e91be3e4e76ddcae2:com.xfinity.digitalhome.debug"/>
         <item value="141E264EB08B576F6C32E49FD47A34300553A132EC5EB1DD58B354A0B15A5E40:com.xfinitymobile.cometcarrierservice"/>
+        <item value="c9133e8168f97573c8c567f46777dff74ade0c015ecf2c5e91be3e4e76ddcae2:com.xfinity.dh.xm"/>
+        <item value="914C26403B57D2D482359FC235CC825AD00D52B0121C18EF2B2B9D4DDA4B8996:com.comcast.mobile.mxs"/>
     </string-array>
 </carrier_config>
