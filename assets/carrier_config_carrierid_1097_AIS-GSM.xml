@@ -3,4 +3,8 @@
     <string-array name="roaming_operator_string_array" num="1">
         <item value="520"/>
     </string-array>
+    <string-array name="carrier_certificate_string_array" num="2">
+        <item value="79c0e4827ac5b4b45bb0a3367b4f46beababd77003918ccc3e286b92fb0d4124:com.ais.mimo.eservice"/>
+        <item value="f56831fc6bb91e99de8d5407a85292bdb4cd3d59585e2b312a25429ca276194b:com.ais.mimo.eservice.inhouse1"/>
+    </string-array>
 </carrier_config>
