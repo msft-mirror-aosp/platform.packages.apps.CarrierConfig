@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<carrier_config>
+  <string-array name="carrier_certificate_string_array" num="2">
+      <item value="3eef2654780a520ab2f2197b72f844368f26d41ca505bd84dfe1e0dc5acf1a24:nz.co.vodafone.android.myaccount"/>
+      <item value="ac263f8b45d7eebe1d50b187686a229b8b67cca2bb1dbcbc4e4b3cf59986b3fb:nz.co.vodafone.android.myaccount.sit"/>
+    </string-array>
+</carrier_config>
