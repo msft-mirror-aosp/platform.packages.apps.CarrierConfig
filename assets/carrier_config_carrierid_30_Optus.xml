@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <carrier_config>
     <boolean name="carrier_supports_ss_over_ut_bool" value="true"/>
+    <string-array name="carrier_certificate_string_array" num="2">
+      <item value="c71cc9e3a45cd4da8a7ccefb8e1ce958619c595be5c67333816cf5082783683b:au.com.optus.selfservice"/>
+      <item value="0bc381ef2786610a4fec9d8f4798971a3d4b61e2dc6111c2c4e3f312d2417b05:au.com.optus.selfservice"/>
+    </string-array>
 </carrier_config>
