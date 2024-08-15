@@ -36,7 +36,8 @@
         <item value="NR_NSA_MMWAVE:563200,614400"/>
         <item value="NR_SA:563200,61440"/>
     </string-array>
-    <string-array name="carrier_certificate_string_array" num="1">
+    <string-array name="carrier_certificate_string_array" num="2">
         <item value="59DFFFDDCCC1929A5C089E53B05A27A42F6517B1:com.skt.prod.dialer,com.skt.thug.hazard,kr.co.safet.sk.guardian"/>
+        <item value="3576E9C87B534762F00B19FBA9F9DD5F37FA799974D3FFA52BE6D9AAA4558275:com.skp.seio,com.sktelecom.smartcard.SmartcardService"/>
     </string-array>
 </carrier_config>
