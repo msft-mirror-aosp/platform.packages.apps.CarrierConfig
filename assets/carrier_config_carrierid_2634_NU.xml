@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<carrier_config>
+    <boolean name="show_4g_for_lte_data_icon_bool" value="true"/>
+    <string-array name="carrier_certificate_string_array" num="1">
+      <item value="8265616BCCE367464483E8D088B833EE4247B960B46FB743AE21F20FF24BE953:com.nu.production"/>
+    </string-array>
+</carrier_config>
