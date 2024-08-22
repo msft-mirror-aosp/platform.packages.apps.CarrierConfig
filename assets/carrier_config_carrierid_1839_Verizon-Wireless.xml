@@ -170,7 +170,8 @@
     <string name="5g_icon_display_grace_period_string">connected_mmwave,legacy,10;connected_mmwave,any,3</string>
     <string name="5g_icon_display_secondary_grace_period_string">connected_mmwave,not_restricted_rrc_idle,60;connected_mmwave,connected_rrc_idle,60</string>
     <boolean name="inflate_signal_strength_bool" value="true" />
-    <int-array name="additional_nr_advanced_bands_int_array" num="1">
+    <int-array name="additional_nr_advanced_bands_int_array" num="2">
+        <item value="48"/>
         <item value="77"/>
     </int-array>
     <int name="nr_advanced_bands_secondary_timer_seconds_int" value="300"/>
