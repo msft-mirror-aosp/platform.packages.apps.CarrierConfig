@@ -189,4 +189,5 @@
     <string-array name="boosted_nrarfcns_string_array" num="1">
         <item value="200000-866666"/>
     </string-array>
+    <boolean name="nr_timers_reset_on_voice_qos_bool" value="true" />
 </carrier_config>
