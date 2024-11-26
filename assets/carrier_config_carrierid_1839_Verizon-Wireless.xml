@@ -190,4 +190,10 @@
         <item value="200000-866666"/>
     </string-array>
     <boolean name="nr_timers_reset_on_voice_qos_bool" value="true" />
+    <pbundle_as_map name="regional_satellite_earfcn_bundle">
+        <int-array name="0" num="2">
+            <item value="229011"/>
+            <item value="229015"/>
+        </int-array>
+    </pbundle_as_map>
 </carrier_config>
