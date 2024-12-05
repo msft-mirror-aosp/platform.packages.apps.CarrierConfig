@@ -71,4 +71,10 @@
         <item value="311170"/>
         <item value="311250"/>
     </string-array>
+    <pbundle_as_map name="carrier_supported_satellite_services_per_provider_bundle">
+        <int-array name = "310830" num = "2">
+            <item value = "3"/>
+            <item value = "6"/>
+        </int-array>
+    </pbundle_as_map>
 </carrier_config>
