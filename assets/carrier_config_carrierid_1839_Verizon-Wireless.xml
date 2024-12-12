@@ -200,7 +200,7 @@
     <boolean name="satellite_esos_supported_bool" value="true" />
     <string name="satellite_nidd_apn_name_string">VZWNTN.LBO</string>
     <boolean name="satellite_roaming_p2p_sms_supported_bool" value="true" />
-    <string name="satellite_display_name_string">VZW</string>
+    <string name="satellite_display_name_string">Satellite</string>
     <boolean name="satellite_entitlement_supported_bool" value="true" />
     <boolean name="override_wfc_roaming_mode_while_using_ntn_bool" value="true" />
     <boolean name="emergency_messaging_supported_bool" value="true" />
