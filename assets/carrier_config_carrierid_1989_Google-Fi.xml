@@ -5,4 +5,7 @@
     <boolean name="force_home_network_bool" value="true"/>
     <string name="carrier_name_string">Google Fi</string>
     <string name="sim_country_iso_override_string">us</string>
+    <string-array name="carrier_certificate_string_array" num="1">
+        <item value="4C36AF4A5BDAD97C1F3D8B283416D244496C2AC5EAFE8226079EF6F676FD1859:com.google.android.apps.tycho"/>
+    </string-array>
 </carrier_config>
