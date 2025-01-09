@@ -46,4 +46,7 @@
     <item value="017"/>
   </string-array>
   <boolean name="carrier_allow_transfer_ims_call_bool" value="true"/>
+  <string-array name="carrier_certificate_string_array" num="1">
+    <item value="25373D2A75B1689F4FAD3400C5814C13B4218CDC34D35B8509FB06671E3D36A3:com.movistar.android.mimovistar.es"/>
+  </string-array>
 </carrier_config>
