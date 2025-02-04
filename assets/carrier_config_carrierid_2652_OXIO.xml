@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<carrier_config>
+    <boolean name="allow_hold_call_during_emergency_bool" value="false"/>
+    <boolean name="carrier_supports_ss_over_ut_bool" value="true"/>
+    <boolean name="carrier_volte_available_bool" value="true"/>
+    <boolean name="carrier_name_override_bool" value="false"/>
+    <boolean name="csp_enabled_bool" value="false"/>
+    <boolean name="hide_ims_apn_bool" value="true"/>
+    <boolean name="show_4g_for_lte_data_icon_bool" value="true"/>
+    <boolean name="display_hd_audio_property_bool" value="false"/>
+    <boolean name="allow_hold_in_ims_call" value="true"/>
+    <int name="volte_replacement_rat_int" value="3"/>
+</carrier_config>
