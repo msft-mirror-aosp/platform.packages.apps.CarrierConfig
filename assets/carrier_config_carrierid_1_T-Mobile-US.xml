@@ -72,10 +72,16 @@
         <item value="311250"/>
     </string-array>
     <pbundle_as_map name="carrier_supported_satellite_services_per_provider_bundle">
-        <int-array name = "310830" num = "2">
+        <int-array name = "310830" num = "3">
+            <item value = "2"/>
             <item value = "3"/>
             <item value = "6"/>
         </int-array>
     </pbundle_as_map>
     <boolean name="satellite_ignore_data_roaming_setting_bool" value="true"/>
+    <int-array name="carrier_roaming_satellite_default_services_int_array" num="3">
+        <item value="2"/>
+        <item value="3"/>
+        <item value="6"/>
+    </int-array>
 </carrier_config>
