@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <carrier_config>
     <string name="sim_country_iso_override_string">bs</string>
+    <boolean name="carrier_volte_available_bool" value="true"/>
+    <boolean name="carrier_supports_ss_over_ut_bool" value="true"/>
+    <boolean name="hide_ims_apn_bool" value="true"/>
+    <int name="carrier_ussd_method_int" value="1"/>
+    <int name="imsvoice.conference_subscribe_type_int" value="1"/>
+    <string name="imsvoice.conference_factory_uri_string">conf_uri@ims.mnc049.mcc364.3gppnetwork.org</string>
+    <string name="carrier_name_string">aliv</string>
 </carrier_config>
