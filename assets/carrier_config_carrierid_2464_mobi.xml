@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<carrier_config>
+    <boolean name="carrier_name_override_bool" value="true"/>
+    <boolean name="carrier_volte_available_bool" value="true"/>
+    <string name="carrier_name_string">mobi</string>
+    <string-array name="carrier_certificate_string_array" num="2">
+        <item value="CA357AC6A590067CB064D081960AFAF88F3157DE8E7D3B77EDE78FFAA1A519B7:com.mobi.stitch,com.mobi.stitch.test"/>
+        <item value="70907933D77B20329475188F12D3AAA2BE20CDA25A1D86DD9DE9CA2FC0A989D3:com.mobi.stitch,com.mobi.stitch.test"/>
+    </string-array>
+</carrier_config>
