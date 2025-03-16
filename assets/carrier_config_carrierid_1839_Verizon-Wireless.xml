@@ -175,6 +175,7 @@
         <item value="77"/>
     </int-array>
     <int name="nr_advanced_bands_secondary_timer_seconds_int" value="300"/>
+    <int name="nr_advanced_pci_change_secondary_timer_seconds_int" value="60"/>
     <string-array name="unmetered_network_types_string_array" num="2">
         <item value="NR_NSA_MMWAVE"/>
         <item value="NR_SA_MMWAVE"/>
