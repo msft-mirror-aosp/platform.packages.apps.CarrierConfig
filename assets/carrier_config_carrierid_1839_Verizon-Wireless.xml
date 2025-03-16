@@ -189,4 +189,31 @@
     <string-array name="boosted_nrarfcns_string_array" num="1">
         <item value="200000-866666"/>
     </string-array>
+    <boolean name="nr_timers_reset_on_voice_qos_bool" value="true" />
+    <pbundle_as_map name="regional_satellite_earfcn_bundle">
+        <int-array name="0" num="2">
+            <item value="229011"/>
+            <item value="229015"/>
+        </int-array>
+    </pbundle_as_map>
+    <boolean name="satellite_attach_supported_bool" value="false" />
+    <boolean name="satellite_esos_supported_bool" value="true" />
+    <string name="satellite_nidd_apn_name_string">VZWNTN.LBO</string>
+    <boolean name="satellite_roaming_p2p_sms_supported_bool" value="true" />
+    <string name="satellite_display_name_string">Satellite</string>
+    <boolean name="satellite_entitlement_supported_bool" value="true" />
+    <boolean name="override_wfc_roaming_mode_while_using_ntn_bool" value="true" />
+    <boolean name="emergency_messaging_supported_bool" value="true" />
+    <boolean name="remove_satellite_plmn_in_manual_network_scan_bool" value="true" />
+    <int name="carrier_roaming_ntn_connect_type_int" value="1"/>
+    <int name="satellite_connection_hysteresis_sec_int" value="0"/>
+    <int name="satellite_entitlement_status_refresh_days_int" value="7"/>
+    <int name="carrier_roaming_ntn_emergency_call_to_satellite_handover_type_int" value="1"/>
+    <pbundle_as_map name="carrier_supported_satellite_services_per_provider_bundle">
+        <int-array name="90198" num="1">
+            <item value="3"/>
+        </int-array>
+    </pbundle_as_map>
+    <string name="satellite_information_redirect_url_string">https://www.verizon.com/wireless-devices/smartphones/messages-via-satellite/</string>
+
 </carrier_config>
