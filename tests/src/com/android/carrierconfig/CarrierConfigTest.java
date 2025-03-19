@@ -34,9 +34,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import junit.framework.AssertionFailedError;
@@ -173,44 +175,63 @@ public class CarrierConfigTest extends InstrumentationTestCase {
      */
     public void testVariableNames() {
         final Set<String> varXmlNames = getCarrierConfigXmlNames();
+        ArrayDeque<String> pathStack = new ArrayDeque<String>();
         // organize them into sets by type or unknown
         forEachConfigXml(new ParserChecker() {
             public void check(XmlPullParser parser, String mccmnc) throws XmlPullParserException,
                     IOException {
                 int event;
                 while (((event = parser.next()) != XmlPullParser.END_DOCUMENT)) {
-                    if (event == XmlPullParser.START_TAG) {
-                        switch (parser.getName()) {
-                            case "int-array":
-                            case "string-array":
-                                // string-array and int-array require the 'num' attribute
-                                final String varNum = parser.getAttributeValue(null, "num");
-                                assertNotNull("No 'num' attribute in array: "
-                                        + parser.getPositionDescription(), varNum);
-                            case "int":
-                            case "long":
-                            case "boolean":
-                            case "string":
-                                // NOTE: This doesn't check for other valid Bundle values, but it
-                                // is limited to the key types in CarrierConfigManager.
-                                final String varName = parser.getAttributeValue(null, "name");
-                                assertNotNull("No 'name' attribute: "
-                                        + parser.getPositionDescription(), varName);
-                                assertTrue("Unknown variable: '" + varName
-                                        + "' at " + parser.getPositionDescription(),
-                                        varXmlNames.contains(varName));
-                                // TODO: Check that the type is correct.
-                                break;
-                            case "carrier_config_list":
-                            case "item":
-                            case "carrier_config":
-                                // do nothing
-                                break;
-                            default:
-                                fail("unexpected tag: '" + parser.getName()
-                                        + "' at " + parser.getPositionDescription());
-                                break;
-                        }
+                    switch (event) {
+                        case XmlPullParser.START_TAG:
+                            String elementName = parser.getName();
+                            String pathString = String.join(
+                                "/",
+                                Optional.ofNullable(pathStack.peek()).orElse(""),
+                                elementName);
+                            pathStack.push(pathString);
+
+                            switch (elementName) {
+                                case "int-array":
+                                case "string-array":
+                                    // string-array and int-array require the 'num' attribute
+                                    final String varNum = parser.getAttributeValue(null, "num");
+                                    assertNotNull("No 'num' attribute in array: "
+                                            + parser.getPositionDescription(), varNum);
+                                case "int":
+                                case "long":
+                                case "boolean":
+                                case "pbundle_as_map":
+                                case "string":
+                                    // NOTE: This doesn't check for other valid Bundle values, but
+                                    // it is limited to the key types in CarrierConfigManager.
+                                    final String varName = parser.getAttributeValue(null, "name");
+                                    assertNotNull("No 'name' attribute: "
+                                            + parser.getPositionDescription(), varName);
+                                    if (!pathString.equals(
+                                          "/carrier_config/pbundle_as_map/int-array")) {
+                                        assertTrue("Unknown variable: '" + varName
+                                            + "' at " + parser.getPositionDescription(),
+                                            varXmlNames.contains(varName));
+                                    }
+                                    // TODO: Check that the type is correct.
+                                    break;
+                                case "carrier_config_list":
+                                case "item":
+                                case "carrier_config":
+                                    // do nothing
+                                    break;
+                                default:
+                                    fail("unexpected tag: '" + parser.getName()
+                                            + "' at " + parser.getPositionDescription());
+                                    break;
+                            }
+                        break;
+                    case XmlPullParser.END_TAG:
+                        pathStack.pop();
+                        break;
+                    default:
+                        break;
                     }
                 }
             }
