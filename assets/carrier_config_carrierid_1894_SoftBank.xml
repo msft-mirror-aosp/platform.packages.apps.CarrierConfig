@@ -29,4 +29,9 @@
     <string-array name="carrier_certificate_string_array" num="1">
         <item value="8CD14DE82459630273B8D4C4F0C7C042FA0EF419C2B76A0AAD3D7A0646B015B9:jp.linemo.app,jp.ymobile.app.esim,jp.co.softbank.wispr.froyo"/>
     </string-array>
+    <string-array name="non_roaming_operator_string_array" num="3">
+        <item value="440091"/>
+        <item value="440092"/>
+        <item value="440094"/>
+    </string-array>
 </carrier_config>
