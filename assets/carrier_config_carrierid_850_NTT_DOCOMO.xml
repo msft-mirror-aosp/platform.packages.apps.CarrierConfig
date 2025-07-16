@@ -38,4 +38,9 @@
         <item value="^海外\s着信通知\(日本時間\)\s\n(?&lt;month&gt;0[1-9]|1[012])/(?&lt;day&gt;0[1-9]|1[0-9]|2[0-9]|3[0-1])\s(?&lt;hour&gt;[0-1][0-9]|2[0-3]):(?&lt;minute&gt;[0-5][0-9])\s\s\n(?&lt;callerId&gt;\+[0-9]{1,16}|[0-9]{1,17})\b\s*"/>
     </string-array>
     <boolean name="nr_timers_reset_if_non_endc_and_rrc_idle_bool" value="true"/>
+    <string-array name="non_roaming_operator_string_array" num="3">
+        <item value="440092"/>
+        <item value="440093"/>
+        <item value="440094"/>
+    </string-array>
 </carrier_config>
