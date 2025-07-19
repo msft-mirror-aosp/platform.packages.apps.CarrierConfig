@@ -23,4 +23,9 @@
         <item value="891ABE3F0A0D794AD46200DC2374AFF61AFA82711C360EE0CB49C3E6BB2BA006:jp.auone.wallet"/>
         <item value="1001568BB4A4E65F68C8B0F2E5C9EBC97FF719898F39E421DAF29A8DACEAAF1B:com.kddi.android.cmail"/>
     </string-array>
+    <string-array name="non_roaming_operator_string_array" num="3">
+        <item value="440091"/>
+        <item value="440093"/>
+        <item value="440094"/>
+    </string-array>
 </carrier_config>
