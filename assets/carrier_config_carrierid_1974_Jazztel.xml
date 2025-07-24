@@ -24,4 +24,9 @@
         <item value="214019"/>
         <item value="214020"/>
     </string-array>
+    <string-array name="carrier_certificate_string_array" num="3">
+        <item value="b67affcda89e3193b1595036d7c6cdbe22be5ca24c9f6cf93fc6b48f91d7310d:com.orange.bluu.jazztel"/>
+        <item value="57f57c5433c6065644bb097111c7867d63896e394556ec452a7a0ae6fae4e816:com.orange.bluu.jazztel,com.orange.bluu.jazztel.staging"/>
+        <item value="dfbd378c05733f6e85ed6f048c97c587282eb41bc8e0eb0a4734b7bb85827597:com.orange.bluu.jazztel.debug,com.orange.bluu.jazztel.staging.debug"/>
+    </string-array>
 </carrier_config>
