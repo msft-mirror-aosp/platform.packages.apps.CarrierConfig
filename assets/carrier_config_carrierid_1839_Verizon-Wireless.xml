@@ -5,8 +5,8 @@
     <boolean name="allowAttachAudio" value="false"/>
     <boolean name="allow_add_call_during_video_call" value="false"/>
     <boolean name="allow_adding_apns_bool" value="false"/>
-    <boolean name="allow_hold_in_ims_call" value="false"/>
     <boolean name="allow_merge_wifi_calls_when_vowifi_off_bool" value="false"/>
+    <boolean name="auto_unhold_on_remote_disconnect_bool" value="true"/>
     <boolean name="apn_expand_bool" value="false"/>
     <boolean name="broadcast_emergency_call_state_changes_bool" value="true"/>
     <boolean name="carrier_allow_turnoff_ims_bool" value="false"/>
