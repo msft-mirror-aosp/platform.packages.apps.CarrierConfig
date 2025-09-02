@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<carrier_config>
+    <carrier_config_version>1</carrier_config_version>
+    <!-- Certificados autorizados para aplicativos específicos da operadora -->
+    <string-array name="carrier_certificate_string_array" num="1">
+        <item value="F27EE0628052D0E701191F9AF54C6E8120EDC19BE137BEEC0AD4E190CED5EEB0:br.com.brisanet.brisaclientemovel"/>
+    </string-array>
+    <!-- Aplicativo responsável pela gestão de planos móveis -->
+    <string name="config_plans_package_override_string">br.com.brisanet.brisaclientemovel</string>
+    <!-- Configuração de tecnologias de rede suportadas -->
+    <boolean name="carrier_volte_available_bool" value="true"/>
+    <boolean name="carrier_volte_roaming_available_bool" value="true"/>
+    <boolean name="carrier_vonr_available_bool" value="true"/>
+    <boolean name="carrier_wfc_ims_available_bool" value="true"/>
+    <!-- Suporte a 5G SA e NSA -->
+    <int-array name="carrier_nr_availabilities_int_array" num="2">
+        <item value="1"/> <!-- NSA -->
+        <item value="2"/> <!-- SA -->
+    </int-array>
+    <!-- Mostrar ícone 4G ao invés de LTE -->
+    <boolean name="show_4g_for_lte_data_icon_bool" value="true"/>
+    <!-- Suporte a Chamadas de Emergência -->
+    <boolean name="support_emergency_sms_over_ims_bool" value="true"/>
+</carrier_config>
