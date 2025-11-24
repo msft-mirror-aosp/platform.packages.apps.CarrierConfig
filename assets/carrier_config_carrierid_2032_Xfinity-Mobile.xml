@@ -157,7 +157,7 @@
         <item value="82"/>
         <item value="83"/>
     </int-array>
-    <string-array name="carrier_certificate_string_array" num="8">
+    <string-array name="carrier_certificate_string_array" num="9">
         <item value="953f5a4c22e7fd16adc3f12eb038682aad377fef9a18b9d12c1abea78911c749:com.xfinity.digitalhome"/>
         <item value="06aada946110e64414aebe3af34ae06baf239ef75c947149fb67263d8a2547c3:com.xfinity.digitalhome.debug"/>
         <item value="141E264EB08B576F6C32E49FD47A34300553A132EC5EB1DD58B354A0B15A5E40:com.xfinitymobile.cometcarrierservice"/>
@@ -166,6 +166,7 @@
         <item value="953f5a4c22e7fd16adc3f12eb038682aad377fef9a18b9d12c1abea78911c749:com.xfinity.mobile.spamfilter"/>
         <item value="3557afac6c4a4951b6d669408dc35bf6dfb1b1536eeb465493f9d29ad166c91d:com.xfinity.mobile.spamfilter"/>
         <item value="3557afac6c4a4951b6d669408dc35bf6dfb1b1536eeb465493f9d29ad166c91d:com.xfinity.digitalhome"/>
+        <item value="EA827BB79F9F4B30723A3988D1159624BA856EEAD7B330B819EE04AFE313A14D:com.pocketgeek.xfinity.android"/>
     </string-array>
     <int-array name="additional_nr_advanced_bands_int_array" num="2">
         <item value="48"/>
