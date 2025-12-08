@@ -24,5 +24,12 @@
             <item value="214020" />
             <item value="214021" />
         </string-array>
+        <boolean name="carrier_volte_available_bool" value="true"/>
+        <boolean name="carrier_supports_ss_over_ut_bool" value="true"/>
+        <boolean name="carrier_wfc_ims_available_bool" value="true"/>
+        <boolean name="carrier_allow_transfer_ims_call_bool" value="true"/>
+        <int-array name="carrier_nr_availabilities_int_array" num="1">
+            <item value="1"/>
+        </int-array>
     </carrier_config>
 </carrier_config_list>
