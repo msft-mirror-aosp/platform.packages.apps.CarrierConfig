@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <carrier_config>
     <string name="sim_country_iso_override_string">jp</string>
+    <string-array name="non_roaming_operator_string_array" num="4">
+        <item value="440091"/>
+        <item value="440092"/>
+        <item value="440093"/>
+        <item value="440094"/>
+    </string-array>
 </carrier_config>
