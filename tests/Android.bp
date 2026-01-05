@@ -9,7 +9,10 @@ android_test {
         "android.test.runner.stubs.system",
         "android.test.base.stubs.system",
     ],
-    static_libs: ["junit"],
+    static_libs: [
+        "junit",
+        "flag-junit",
+    ],
     srcs: ["src/**/*.java"],
     platform_apis: true,
     test_suites: ["device-tests"],
