@@ -1,8 +1,7 @@
 {
   "presubmit": [
     {
-      "name": "CarrierConfigTests",
-      "keywords": ["internal"]
+      "name": "CarrierConfigTests"
     }
   ]
 }
