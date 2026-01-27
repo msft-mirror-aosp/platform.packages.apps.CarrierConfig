@@ -74,4 +74,8 @@
     <string name="5g_icon_configuration_string">connected_mmwave:5G_Plus,connected:5G,not_restricted_rrc_idle:5G,not_restricted_rrc_con:5G</string>
     <int name="nr_advanced_threshold_bandwidth_khz_int" value="50000" />
     <boolean name="include_lte_for_nr_advanced_threshold_bandwidth_bool" value="true"/>
+    <string-array name="carrier_certificate_string_array" num="2">
+        <item value="8C960CA3CBF4A9DA851774F2DE072E57B1289A9CF7D6BDA4A6B386A42BC4FFB3:com.trustonic.telecoms.standard.dlc,com.trustonic.telecoms.standard.dpc"/>
+        <item value="7413E2B365230E1BCB294D687C3B87EE5BC7E3F9:com.trustonic.telecoms.standard.dlc,com.trustonic.telecoms.standard.dpc"/>
+    </string-array>
 </carrier_config>
