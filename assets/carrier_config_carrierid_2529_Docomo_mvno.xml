@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <carrier_config_list>
     <carrier_config>
         <string-array name="non_roaming_operator_string_array" num="4">
