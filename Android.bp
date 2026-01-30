@@ -9,6 +9,26 @@ android_app {
     certificate: "platform",
     system_ext_specific: true,
     privileged: true,
-    required: ["privapp_whitelist_com.android.carrierconfig"],
+    required: [
+        "privapp_whitelist_com.android.carrierconfig",
+        "preinstalled-packages-carrierconfig-system-ext",
+    ],
     aaptflags: ["--keep-raw-values"],
+}
+
+// Allowlist for System_Ext partition (Telephony using target/product/telephony_system_ext.mk,
+// GSI using gsi_system_ext.mk, Wear using shared/wear/aosp_system_ext.mk)
+prebuilt_etc {
+    name: "preinstalled-packages-carrierconfig-system-ext",
+    sub_dir: "sysconfig",
+    system_ext_specific: true,
+    src: "preinstalled-packages-carrierconfig.xml",
+}
+
+// Allowlist for Product partition (Desktop using radio.mk)
+prebuilt_etc {
+    name: "preinstalled-packages-carrierconfig-product",
+    sub_dir: "sysconfig",
+    product_specific: true,
+    src: "preinstalled-packages-carrierconfig.xml",
 }
