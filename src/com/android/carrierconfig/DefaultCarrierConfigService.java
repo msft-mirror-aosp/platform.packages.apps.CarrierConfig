@@ -16,8 +16,8 @@
 
 package com.android.carrierconfig;
 
+import android.annotation.NonNull;
 import android.annotation.Nullable;
-import android.content.Context;
 import android.os.Build;
 import android.os.PersistableBundle;
 import android.os.SystemProperties;
@@ -107,31 +107,28 @@ public class DefaultCarrierConfigService extends CarrierService {
         }
     }
 
-    PersistableBundle loadConfig(XmlPullParser parser, @Nullable CarrierIdentifier id) {
+    private PersistableBundle getNoSimConfig(XmlPullParser parser, String sku) {
         PersistableBundle config = new PersistableBundle();
-        // OEM customizable filter for carrier requirements not related to hardware/vendor SKU.
-        String sku = getApplicationContext().getResources().getString(R.string.sku_filter);
+        try {
+            // Load no SIM config if carrier id is not set.
+            parser.setInput(
+                    getApplicationContext().getAssets().open(NO_SIM_CONFIG_FILE_NAME), "utf-8");
+            config = readConfigFromXml(parser, null, sku);
 
-        if (id == null) {
-            try {
-                // Load no SIM config if carrier id is not set.
-                parser.setInput(getApplicationContext().getAssets().open(
-                        NO_SIM_CONFIG_FILE_NAME), "utf-8");
-                config = readConfigFromXml(parser, null, sku);
-
-                // Treat vendor_no_sim.xml as if it were appended to the no sim config file.
-                XmlPullParser vendorInput =
-                        getApplicationContext().getResources().getXml(R.xml.vendor_no_sim);
-                PersistableBundle vendorConfig = readConfigFromXml(vendorInput, null, sku);
-                config.putAll(vendorConfig);
-            }
-            catch (IOException|XmlPullParserException e) {
-                Log.e(TAG, "Failed to load config for no SIM", e);
-            }
-
-            return config;
+            // Treat vendor_no_sim.xml as if it were appended to the no sim config file.
+            XmlPullParser vendorInput =
+                    getApplicationContext().getResources().getXml(R.xml.vendor_no_sim);
+            PersistableBundle vendorConfig = readConfigFromXml(vendorInput, null, sku);
+            config.putAll(vendorConfig);
+        } catch (IOException | XmlPullParserException e) {
+            Log.e(TAG, "Failed to load config for no SIM", e);
         }
+        return config;
+    }
 
+    private PersistableBundle getMatchedCarrierConfig(
+            XmlPullParser parser, @NonNull CarrierIdentifier id, String sku) {
+        PersistableBundle config = new PersistableBundle();
         try {
             if (id.getCarrierId() != TelephonyManager.UNKNOWN_CARRIER_ID) {
                 PersistableBundle configByCarrierId = new PersistableBundle();
@@ -176,6 +173,18 @@ public class DefaultCarrierConfigService extends CarrierService {
             // We can return an empty config for unknown networks.
             config = new PersistableBundle();
         }
+        return config;
+    }
+
+    PersistableBundle loadConfig(XmlPullParser parser, @Nullable CarrierIdentifier id) {
+        // OEM customizable filter for carrier requirements not related to hardware/vendor SKU.
+        String sku = getApplicationContext().getResources().getString(R.string.sku_filter);
+
+        if (id == null) {
+            return getNoSimConfig(parser, sku);
+        }
+
+        PersistableBundle config = getMatchedCarrierConfig(parser, id, sku);
 
         // Treat vendor.xml as if it were appended to the carrier config file we read.
         XmlPullParser vendorInput = getApplicationContext().getResources().getXml(R.xml.vendor);
