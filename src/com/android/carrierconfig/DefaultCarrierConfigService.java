@@ -16,6 +16,8 @@
 
 package com.android.carrierconfig;
 
+import static com.android.internal.carrierconfig.flags.Flags.addVendorDefaultsToCarrierConfig;
+
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.os.Build;
@@ -184,7 +186,20 @@ public class DefaultCarrierConfigService extends CarrierService {
             return getNoSimConfig(parser, sku);
         }
 
-        PersistableBundle config = getMatchedCarrierConfig(parser, id, sku);
+        PersistableBundle config = new PersistableBundle();
+        if (addVendorDefaultsToCarrierConfig()) {
+            // Load the default values from vendor_defaults.xml.
+            XmlPullParser vendorDefaultsInput =
+                    getApplicationContext().getResources().getXml(R.xml.vendor_defaults);
+            try {
+                config.putAll(readConfigFromXml(vendorDefaultsInput, id, sku));
+            } catch (IOException | XmlPullParserException e) {
+                Log.e(TAG, "Failed to read vendor_defaults.xml", e);
+            }
+        }
+
+        // Append the configuration that matches the carrier
+        config.putAll(getMatchedCarrierConfig(parser, id, sku));
 
         // Treat vendor.xml as if it were appended to the carrier config file we read.
         XmlPullParser vendorInput = getApplicationContext().getResources().getXml(R.xml.vendor);

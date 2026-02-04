@@ -11,4 +11,21 @@ android_app {
     privileged: true,
     required: ["privapp_whitelist_com.android.carrierconfig"],
     aaptflags: ["--keep-raw-values"],
+    static_libs: [
+        "carrier_config_flags_lib",
+    ],
+}
+
+java_aconfig_library {
+    name: "carrier_config_flags_lib",
+    aconfig_declarations: "carrier_config_flags",
+}
+
+aconfig_declarations {
+    name: "carrier_config_flags",
+    package: "com.android.internal.carrierconfig.flags",
+    container: "system_ext",
+    srcs: [
+        "carrierconfig.aconfig",
+    ],
 }

@@ -1,0 +1,10 @@
+package: "com.android.internal.carrierconfig.flags"
+container: "system_ext"
+
+# OWNER=andrewlassalle TARGET=26Q3
+flag {
+  name: "add_vendor_defaults_to_carrier_config"
+  namespace: "telephony"
+  description: "When enabled, values in vendor_defaults.xml are set before any values are loaded from carrier xmls."
+  bug: "467148147"
+}
