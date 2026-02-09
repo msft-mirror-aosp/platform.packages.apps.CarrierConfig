@@ -29,11 +29,14 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.VisibleForTesting;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -109,12 +112,11 @@ public class DefaultCarrierConfigService extends CarrierService {
         }
     }
 
-    private PersistableBundle getNoSimConfig(XmlPullParser parser, String sku) {
+    PersistableBundle getNoSimConfig(XmlPullParser parser, String sku) {
         PersistableBundle config = new PersistableBundle();
-        try {
+        try (InputStream inputStream = openAsset(NO_SIM_CONFIG_FILE_NAME)) {
             // Load no SIM config if carrier id is not set.
-            parser.setInput(
-                    getApplicationContext().getAssets().open(NO_SIM_CONFIG_FILE_NAME), "utf-8");
+            parser.setInput(inputStream, "utf-8");
             config = readConfigFromXml(parser, null, sku);
 
             // Treat vendor_no_sim.xml as if it were appended to the no sim config file.
@@ -126,6 +128,27 @@ public class DefaultCarrierConfigService extends CarrierService {
             Log.e(TAG, "Failed to load config for no SIM", e);
         }
         return config;
+    }
+
+    /**
+     * List all assets.
+     *
+     * @param path the path to list.
+     * @return an array of asset names.
+     */
+    @VisibleForTesting
+    String[] listAssets(String path) throws IOException {
+        return getApplicationContext().getAssets().list(path);
+    }
+
+    /**
+     * Open an asset file.
+     *
+     * @param fileName the name of the asset file.
+     * @return an InputStream to the asset file.
+     */
+    InputStream openAsset(String fileName) throws IOException {
+        return getApplicationContext().getAssets().open(fileName);
     }
 
     private PersistableBundle getMatchedCarrierConfig(
@@ -140,17 +163,23 @@ public class DefaultCarrierConfigService extends CarrierService {
                         .getSystemService(TelephonyManager.class);
                 int mccmncCarrierId = telephonyManager
                         .getCarrierIdFromMccMnc(id.getMcc() + id.getMnc());
-                for (String file : getApplicationContext().getAssets().list("")) {
+                for (String file : listAssets("")) {
                     if (file.startsWith(CARRIER_ID_PREFIX + id.getSpecificCarrierId() + "_")) {
-                        parser.setInput(getApplicationContext().getAssets().open(file), "utf-8");
-                        configBySpecificCarrierId = readConfigFromXml(parser, null, sku);
+                        try (InputStream inputStream = openAsset(file)) {
+                            parser.setInput(inputStream, "utf-8");
+                            configBySpecificCarrierId = readConfigFromXml(parser, null, sku);
+                        }
                         break;
                     } else if (file.startsWith(CARRIER_ID_PREFIX + id.getCarrierId() + "_")) {
-                        parser.setInput(getApplicationContext().getAssets().open(file), "utf-8");
-                        configByCarrierId = readConfigFromXml(parser, null, sku);
+                        try (InputStream inputStream = openAsset(file)) {
+                            parser.setInput(inputStream, "utf-8");
+                            configByCarrierId = readConfigFromXml(parser, null, sku);
+                        }
                     } else if (file.startsWith(CARRIER_ID_PREFIX + mccmncCarrierId + "_")) {
-                        parser.setInput(getApplicationContext().getAssets().open(file), "utf-8");
-                        configByMccMncFallBackCarrierId = readConfigFromXml(parser, null, sku);
+                        try (InputStream inputStream = openAsset(file)) {
+                            parser.setInput(inputStream, "utf-8");
+                            configByMccMncFallBackCarrierId = readConfigFromXml(parser, null, sku);
+                        }
                     }
                 }
 
@@ -165,9 +194,11 @@ public class DefaultCarrierConfigService extends CarrierService {
             }
             if (config.isEmpty()) {
                 // fallback to use mccmnc.xml when there is no carrier id named config found.
-                parser.setInput(getApplicationContext().getAssets().open(
-                        MCCMNC_PREFIX + id.getMcc() + id.getMnc() + ".xml"), "utf-8");
-                config = readConfigFromXml(parser, id, sku);
+                try (InputStream inputStream =
+                        openAsset(MCCMNC_PREFIX + id.getMcc() + id.getMnc() + ".xml")) {
+                    parser.setInput(inputStream, "utf-8");
+                    config = readConfigFromXml(parser, id, sku);
+                }
             }
         }
         catch (IOException | XmlPullParserException e) {

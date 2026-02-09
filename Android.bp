@@ -12,6 +12,7 @@ android_app {
     required: ["privapp_whitelist_com.android.carrierconfig"],
     aaptflags: ["--keep-raw-values"],
     static_libs: [
+        "androidx.annotation_annotation",
         "carrier_config_flags_lib",
     ],
 }

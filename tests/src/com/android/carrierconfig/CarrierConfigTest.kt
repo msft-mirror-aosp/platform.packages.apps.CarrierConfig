@@ -23,6 +23,7 @@ import android.service.carrier.CarrierIdentifier
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.internal.carrierconfig.flags.Flags
+import java.io.InputStream
 import java.io.StringReader
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -81,8 +82,20 @@ class CarrierConfigKotlinTest {
                 override fun getResources(): Resources {
                     return mockResources
                 }
+
+                override fun openAsset(fileName: String): InputStream {
+                    if (fileName == "carrier_config_no_sim.xml") {
+                        openNoSimAssetCalled = true
+                        return mockNoSimAssetStream ?: super.openAsset(fileName)
+                    } else {
+                        return super.openAsset(fileName)
+                    }
+                }
             }
     }
+
+    private var openNoSimAssetCalled = false
+    private var mockNoSimAssetStream: InputStream? = null
 
     private fun createTestXmlParser(xmlContent: String): XmlResourceParser {
         val factory = XmlPullParserFactory.newInstance()
@@ -182,7 +195,7 @@ class CarrierConfigKotlinTest {
         assertNotNull("Config should not be null", config)
         assertTrue(
             "vendor_defaults.xml should be loaded",
-            config!!.getBoolean("test_vendor_defaults_loaded", false),
+            config.getBoolean("test_vendor_defaults_loaded", false),
         )
         verify(mockResources).getXml(eq(R.xml.vendor_defaults))
     }
@@ -207,8 +220,117 @@ class CarrierConfigKotlinTest {
         assertNotNull("Config should not be null", config)
         assertFalse(
             "vendor_defaults.xml should NOT be loaded",
-            config!!.containsKey("test_vendor_defaults_loaded"),
+            config.containsKey("test_vendor_defaults_loaded"),
         )
         verify(mockResources, never()).getXml(eq(R.xml.vendor_defaults))
+    }
+
+    @Test
+    fun testVendorXmlParse() {
+        val testXml =
+            """
+                <carrier_config_list>
+                    <carrier_config>
+                        <boolean name="test_vendor_loaded" value="true" />
+                    </carrier_config>
+                </carrier_config_list>
+            """
+                .trimIndent()
+        val vendorParser = createTestXmlParser(testXml)
+        whenever(mockResources.getXml(eq(R.xml.vendor))) doReturn vendorParser
+
+        val config = service.onLoadConfig(carrierIdentifier)
+
+        assertNotNull("Config should not be null", config)
+        assertTrue("vendor.xml should be loaded", config.getBoolean("test_vendor_loaded", false))
+        verify(mockResources).getXml(eq(R.xml.vendor))
+    }
+
+    @Test
+    fun testNoSimConfigAndVendorNoSimMerge() {
+        val noSimAssetXml =
+            """
+                <carrier_config_list>
+                    <carrier_config>
+                        <boolean name="test_no_sim_asset_loaded" value="true" />
+                    </carrier_config>
+                </carrier_config_list>
+            """
+                .trimIndent()
+        mockNoSimAssetStream = noSimAssetXml.toByteArray(Charsets.UTF_8).inputStream()
+
+        val vendorNoSimXml =
+            """
+                <carrier_config_list>
+                    <carrier_config>
+                        <boolean name="test_vendor_no_sim_loaded" value="true" />
+                    </carrier_config>
+                </carrier_config_list>
+            """
+                .trimIndent()
+        val vendorNoSimParser = createTestXmlParser(vendorNoSimXml)
+        whenever(mockResources.getXml(eq(R.xml.vendor_no_sim))) doReturn vendorNoSimParser
+
+        try {
+            val parser = XmlPullParserFactory.newInstance().newPullParser()
+            val config = service.getNoSimConfig(parser, "")
+
+            assertNotNull("Config should not be null", config)
+            assertTrue("openAsset should be called", openNoSimAssetCalled)
+            assertTrue(
+                "carrier_config_no_sim.xml should be loaded",
+                config.getBoolean("test_no_sim_asset_loaded", false),
+            )
+            assertTrue(
+                "vendor_no_sim.xml should be loaded",
+                config.getBoolean("test_vendor_no_sim_loaded", false),
+            )
+            verify(mockResources).getXml(eq(R.xml.vendor_no_sim))
+        } finally {
+            mockNoSimAssetStream = null
+        }
+    }
+
+    @Test
+    fun testNoSimConfigVendorOverride() {
+        val noSimAssetXml =
+            """
+                <carrier_config_list>
+                    <carrier_config>
+                        <string name="test_override_key">asset_value</string>
+                    </carrier_config>
+                </carrier_config_list>
+            """
+                .trimIndent()
+        mockNoSimAssetStream = noSimAssetXml.toByteArray(Charsets.UTF_8).inputStream()
+
+        val vendorNoSimXml =
+            """
+                <carrier_config_list>
+                    <carrier_config>
+                        <string name="test_override_key">vendor_value</string>
+                    </carrier_config>
+                </carrier_config_list>
+            """
+                .trimIndent()
+        val vendorNoSimParser = createTestXmlParser(vendorNoSimXml)
+        whenever(mockResources.getXml(eq(R.xml.vendor_no_sim))) doReturn vendorNoSimParser
+
+        try {
+            val parser = XmlPullParserFactory.newInstance().newPullParser()
+            val config = service.getNoSimConfig(parser, "")
+
+            assertNotNull("Config should not be null", config)
+            assertTrue(
+                "test_override_key should be present",
+                config.containsKey("test_override_key"),
+            )
+            assertTrue(
+                "vendor_no_sim should override asset value",
+                config.getString("test_override_key") == "vendor_value",
+            )
+        } finally {
+            mockNoSimAssetStream = null
+        }
     }
 }
