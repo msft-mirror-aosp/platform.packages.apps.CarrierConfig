@@ -25,7 +25,7 @@
         <option name="runner" value="android.test.InstrumentationTestRunner" />
         <option name="hidden-api-checks" value="false"/>
       </test>
-    <object type="module_controller" class="com.android.tradefed.testtype.suite.module.DeviceFeatureModuleController">
-        <option name="forbidden-feature" value="com.google.android.feature.PIXEL_EXPERIENCE" />
+    <object type="module_controller" class="com.android.tradefed.testtype.suite.module.PackageInstalledModuleController">
+        <option name="required-package" value="com.android.carrierconfig" />
     </object>
 </configuration>
