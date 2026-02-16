@@ -16,8 +16,13 @@
 
 package com.android.carrierconfig;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import android.Manifest;
 import android.annotation.NonNull;
+import android.app.Instrumentation;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
@@ -27,11 +32,18 @@ import android.provider.Telephony;
 import android.service.carrier.CarrierIdentifier;
 import android.telephony.CarrierConfigManager;
 import android.telephony.TelephonyManager;
-import android.test.InstrumentationTestCase;
 import android.util.Log;
 
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayDeque;
@@ -41,18 +53,30 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import junit.framework.AssertionFailedError;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-public class CarrierConfigTest extends InstrumentationTestCase {
+@RunWith(AndroidJUnit4.class)
+public class CarrierConfigTest {
     private static final String TAG = "CarrierConfigTest";
+
+    private Instrumentation getInstrumentation() {
+        return InstrumentationRegistry.getInstrumentation();
+    }
+
+    private Context getContext() {
+        return getInstrumentation().getTargetContext();
+    }
+
+    private AssetManager getAssets() {
+        return getContext().getAssets();
+    }
+
+    private Resources getResources() {
+        return getContext().getResources();
+    }
 
     /**
      * Iterate over all XML files in assets/ and ensure they parse without error.
      */
+    @Test
     public void testAllFilesParse() {
         forEachConfigXml(new ParserChecker() {
             public void check(XmlPullParser parser, String mccmnc) throws XmlPullParserException,
@@ -68,6 +92,7 @@ public class CarrierConfigTest extends InstrumentationTestCase {
      * Check that the config bundles in XML files have valid filter attributes.
      * This checks the attribute names only.
      */
+    @Test
     public void testFilterValidAttributes() {
         forEachConfigXml(new ParserChecker() {
             public void check(XmlPullParser parser, String mccmnc) throws XmlPullParserException,
@@ -110,6 +135,7 @@ public class CarrierConfigTest extends InstrumentationTestCase {
      * If there is a matching carrier id, all configurations should move to carrierid.xml which
      * has a higher matching priority than mccmnc.xml
      */
+    @Test
     public void testCarrierConfigFileNaming() {
         forEachConfigXml(new ParserChecker() {
             public void check(XmlPullParser parser, String mccmnc) throws XmlPullParserException,
@@ -158,7 +184,7 @@ public class CarrierConfigTest extends InstrumentationTestCase {
                         mcc = (mcc != null) ? mcc : mccmnc.substring(0, 3);
                         mnc = (mnc != null) ? mnc : mccmnc.substring(3);
                         // check if there is a valid carrier id
-                        int carrierId = getCarrierId(getInstrumentation().getTargetContext(),
+                        int carrierId = getCarrierId(getContext(),
                                 new CarrierIdentifier(mcc, mnc, spn, imsi, gid1, gid2));
                         if (carrierId != TelephonyManager.UNKNOWN_CARRIER_ID) {
                             fail("unexpected carrier_config_mccmnc.xml with matching carrier id: "
@@ -173,6 +199,7 @@ public class CarrierConfigTest extends InstrumentationTestCase {
     /**
      * Tests that the variable names in each XML file match actual keys in CarrierConfigManager.
      */
+    @Test
     public void testVariableNames() {
         final Set<String> varXmlNames = getCarrierConfigXmlNames();
         ArrayDeque<String> pathStack = new ArrayDeque<String>();
@@ -252,7 +279,7 @@ public class CarrierConfigTest extends InstrumentationTestCase {
      * Utility for iterating over each XML document in the assets folder.
      */
     private void forEachConfigXml(ParserChecker checker) {
-        AssetManager assetMgr = getInstrumentation().getTargetContext().getAssets();
+        AssetManager assetMgr = getAssets();
         String mccmnc = null;
         try {
             String[] files = assetMgr.list("");
@@ -278,7 +305,7 @@ public class CarrierConfigTest extends InstrumentationTestCase {
             }
             // Check vendor.xml too
             try {
-                Resources res = getInstrumentation().getTargetContext().getResources();
+                Resources res = getResources();
                 checker.check(res.getXml(R.xml.vendor), mccmnc);
             } catch (Throwable e) {
                 throw new AssertionError("Problem in vendor.xml: " + e.getMessage(), e);
@@ -372,6 +399,7 @@ public class CarrierConfigTest extends InstrumentationTestCase {
         } finally {
             getInstrumentation().getUiAutomation().dropShellPermissionIdentity();
         }
+
         return TelephonyManager.UNKNOWN_CARRIER_ID;
     }
 }

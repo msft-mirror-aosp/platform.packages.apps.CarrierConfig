@@ -20,11 +20,9 @@
 
     <option name="test-suite-tag" value="apct" />
     <option name="test-tag" value="CarrierConfigTests" />
-    <test class="com.android.tradefed.testtype.InstrumentationTest" >
+    <test class="com.android.tradefed.testtype.AndroidJUnitTest" >
         <option name="package" value="com.android.carrierconfig.tests" />
-        <option name="runner" value="android.test.InstrumentationTestRunner" />
-        <option name="hidden-api-checks" value="false"/>
-      </test>
+    </test>
     <object type="module_controller" class="com.android.tradefed.testtype.suite.module.PackageInstalledModuleController">
         <option name="required-package" value="com.android.carrierconfig" />
     </object>
