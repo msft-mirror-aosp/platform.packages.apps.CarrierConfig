@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<carrier_config>
+
+    <!-- VoLTE -->
+    <boolean name="carrier_volte_available_bool" value="true"/>
+    <boolean name="enhanced_4g_lte_on_by_default_bool" value="true"/>
+    <boolean name="hide_enhanced_4g_lte_bool" value="false"/>
+
+    <!-- Supplementary Services / UT -->
+    <boolean name="carrier_supports_ss_over_ut_bool" value="true"/>
+
+    <!-- XCAP / BSF -->
+    <string name="imsss.ut_as_server_fqdn_string">xcap.ims.mnc074.mcc228.pub.3gppnetwork.org</string>
+    <int name="imsss.ut_as_server_port_int" value="443"/>
+
+    <string name="bsf.bsf_server_fqdn_string">bsf.ims.mnc074.mcc228.pub.3gppnetwork.org</string>
+    <int name="bsf.bsf_server_port_int" value="443"/>
+
+</carrier_config>
