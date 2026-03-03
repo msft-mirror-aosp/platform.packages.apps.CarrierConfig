@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <carrier_config>
     <boolean name="carrier_volte_available_bool" value="true"/>
+    <int-array name="carrier_nr_availabilities_int_array" num="1">
+        <item value="1"/>
+    </int-array>
     <string-array name="carrier_certificate_string_array" num="1">
         <item value="F93072E344E691F4022314D3E6D0D61B800F108A3F0883AE130E725503A79142:co.cape.matrix" />
     </string-array>
